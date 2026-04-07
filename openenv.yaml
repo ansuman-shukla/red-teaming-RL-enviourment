@@ -1,0 +1,9 @@
+spec_version: 1
+name: red_teaming_env
+type: space
+runtime: fastapi
+app: server.app:app
+port: 8000
+action: RedTeamAction
+observation: RedTeamObservation
+state: RedTeamState

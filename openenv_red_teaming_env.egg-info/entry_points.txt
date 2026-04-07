@@ -1,0 +1,2 @@
+[console_scripts]
+server = red_teaming_env.server.app:main
