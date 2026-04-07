@@ -17,19 +17,24 @@ except ImportError:  # pragma: no cover
 
 CUSTOM_CSS = """
 :root {
-  --rt-bg: linear-gradient(145deg, #fbf5eb 0%, #f3e8d8 52%, #e6d6bf 100%);
-  --rt-panel: rgba(255, 251, 245, 0.94);
-  --rt-panel-strong: rgba(255, 248, 239, 0.985);
-  --rt-border: rgba(120, 77, 34, 0.14);
-  --rt-ink: #2a1b12;
-  --rt-muted: #6d584a;
-  --rt-accent: #b14a1f;
-  --rt-accent-deep: #7f2d11;
-  --rt-ok: #2f6a46;
-  --rt-shadow: 0 22px 54px rgba(66, 34, 8, 0.1);
-  --rt-input: #fffaf3;
-  --rt-input-border: rgba(120, 77, 34, 0.16);
-  --rt-surface: rgba(255, 255, 255, 0.58);
+  --rt-bg:
+    radial-gradient(circle at top, rgba(75, 124, 255, 0.12), transparent 26%),
+    radial-gradient(circle at bottom left, rgba(47, 212, 191, 0.08), transparent 22%),
+    linear-gradient(180deg, #0c1016 0%, #0f141c 45%, #0a0f15 100%);
+  --rt-panel: rgba(18, 24, 34, 0.9);
+  --rt-panel-strong: rgba(21, 28, 39, 0.96);
+  --rt-border: rgba(127, 140, 156, 0.2);
+  --rt-ink: #eff5ff;
+  --rt-muted: #a7b3c6;
+  --rt-accent: #68a5ff;
+  --rt-accent-deep: #3d7ae6;
+  --rt-ok: #46c486;
+  --rt-shadow: 0 20px 56px rgba(0, 0, 0, 0.34);
+  --rt-input: #0f1620;
+  --rt-input-border: rgba(127, 140, 156, 0.22);
+  --rt-surface: rgba(12, 18, 27, 0.92);
+  --rt-radius: 18px;
+  --rt-radius-lg: 22px;
 }
 
 html,
@@ -43,14 +48,14 @@ body,
 }
 
 body {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 .gradio-container {
-  width: min(1440px, calc(100vw - 40px)) !important;
-  max-width: min(1440px, calc(100vw - 40px)) !important;
+  width: calc(100vw - 24px) !important;
+  max-width: 1760px !important;
   margin: 0 auto !important;
-  padding: 28px 0 40px 0 !important;
+  padding: 18px 0 32px 0 !important;
 }
 
 .gradio-container > div,
@@ -70,7 +75,7 @@ body {
 .rt-metric {
   background: var(--rt-panel);
   border: 1px solid var(--rt-border);
-  border-radius: 24px;
+  border-radius: var(--rt-radius-lg);
   box-shadow: var(--rt-shadow);
   backdrop-filter: blur(12px);
 }
@@ -79,8 +84,8 @@ body {
   padding: 28px 30px 18px 30px;
   margin-bottom: 18px;
   background:
-    radial-gradient(circle at top right, rgba(177, 74, 31, 0.16), transparent 38%),
-    radial-gradient(circle at left bottom, rgba(87, 120, 73, 0.12), transparent 35%),
+    radial-gradient(circle at top right, rgba(104, 165, 255, 0.12), transparent 38%),
+    radial-gradient(circle at left bottom, rgba(70, 196, 134, 0.08), transparent 35%),
     var(--rt-panel-strong);
 }
 
@@ -124,6 +129,8 @@ body {
 .rt-panel {
   padding: 18px 18px 12px 18px;
   height: 100%;
+  background:
+    linear-gradient(180deg, rgba(23, 30, 42, 0.98), rgba(15, 21, 31, 0.94));
 }
 
 .rt-panel h3 {
@@ -135,8 +142,9 @@ body {
 .rt-subnote {
   margin: 0 0 14px 0;
   padding: 10px 12px;
-  border-radius: 14px;
-  background: rgba(177, 74, 31, 0.06);
+  border-radius: var(--rt-radius);
+  background: rgba(104, 165, 255, 0.08);
+  border: 1px solid rgba(104, 165, 255, 0.12);
   color: var(--rt-muted);
   font-size: 14px;
 }
@@ -149,7 +157,8 @@ body {
   padding: 14px 16px;
   min-height: 94px;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 247, 238, 0.88));
+    linear-gradient(180deg, rgba(22, 29, 40, 0.98), rgba(14, 20, 29, 0.94));
+  border-radius: var(--rt-radius);
 }
 
 .rt-metric h4 {
@@ -168,22 +177,29 @@ body {
 }
 
 .rt-banner {
-  background: rgba(177, 74, 31, 0.08);
-  border: 1px solid rgba(177, 74, 31, 0.14);
-  border-radius: 16px;
+  background: rgba(104, 165, 255, 0.08);
+  border: 1px solid rgba(104, 165, 255, 0.14);
+  border-radius: var(--rt-radius);
   padding: 12px 14px;
   margin-top: 14px;
 }
 
 .rt-banner strong {
-  color: var(--rt-accent-deep);
+  color: #b5d5ff;
 }
 
 .rt-history {
   background: var(--rt-surface);
   border: 1px solid var(--rt-border);
-  border-radius: 18px;
+  border-radius: var(--rt-radius);
   padding: 14px 16px;
+}
+
+.rt-history,
+.rt-history p,
+.rt-history strong,
+.rt-history code {
+  color: #dfe8f6 !important;
 }
 
 .rt-history code {
@@ -214,26 +230,31 @@ body {
 .gradio-container .primary {
   background: linear-gradient(135deg, var(--rt-accent), var(--rt-accent-deep)) !important;
   border: none !important;
-  color: #fff8f2 !important;
-  box-shadow: 0 14px 26px rgba(127, 45, 17, 0.22) !important;
+  color: #f6fbff !important;
+  box-shadow: 0 12px 28px rgba(41, 92, 194, 0.28) !important;
 }
 
 .gradio-container .secondary {
-  background: rgba(255, 250, 243, 0.88) !important;
-  border-color: rgba(122, 39, 16, 0.22) !important;
-  color: var(--rt-accent-deep) !important;
+  background: rgba(20, 27, 38, 0.92) !important;
+  border-color: rgba(127, 140, 156, 0.22) !important;
+  color: #d9e5f7 !important;
 }
 
 .gradio-container button {
-  border-radius: 14px !important;
+  border-radius: var(--rt-radius) !important;
   min-height: 44px !important;
   font-weight: 700 !important;
+  transition: transform 120ms ease, box-shadow 120ms ease, border-color 120ms ease !important;
+}
+
+.gradio-container button:hover {
+  transform: translateY(-1px);
 }
 
 .gradio-container .block,
 .gradio-container .form,
 .gradio-container .wrap {
-  border-radius: 18px !important;
+  border-radius: var(--rt-radius) !important;
 }
 
 .gradio-container .form {
@@ -257,18 +278,49 @@ body {
   background: var(--rt-input) !important;
   border: 1px solid var(--rt-input-border) !important;
   color: var(--rt-ink) !important;
-  border-radius: 16px !important;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72) !important;
+  border-radius: var(--rt-radius) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03) !important;
 }
 
 .gradio-container textarea::placeholder,
 .gradio-container input::placeholder {
-  color: rgba(109, 88, 74, 0.74) !important;
+  color: rgba(192, 203, 220, 0.7) !important;
 }
 
 .gradio-container [data-testid="dropdown"],
 .gradio-container [data-testid="textbox"] {
   margin-bottom: 4px !important;
+}
+
+.gradio-container [data-testid="dropdown"] .wrap-inner,
+.gradio-container [data-testid="dropdown"] button,
+.gradio-container [data-testid="dropdown"] input,
+.gradio-container [data-testid="dropdown"] select {
+  background: var(--rt-input) !important;
+  color: var(--rt-ink) !important;
+}
+
+.gradio-container [data-testid="dropdown"]:focus-within .wrap-inner,
+.gradio-container [data-testid="textbox"]:focus-within .input-container,
+.gradio-container textarea:focus,
+.gradio-container input:focus,
+.gradio-container select:focus {
+  border-color: rgba(104, 165, 255, 0.75) !important;
+  box-shadow: 0 0 0 3px rgba(104, 165, 255, 0.12) !important;
+  outline: none !important;
+}
+
+.gradio-container [data-testid="dropdown"] [aria-expanded="true"],
+.gradio-container [data-testid="dropdown"] button:hover {
+  border-color: rgba(104, 165, 255, 0.55) !important;
+}
+
+.gradio-container [role="listbox"],
+.gradio-container [role="option"],
+.gradio-container ul[role="listbox"] {
+  background: #111823 !important;
+  color: var(--rt-ink) !important;
+  border-color: var(--rt-border) !important;
 }
 
 .gradio-container [data-testid="textbox"] textarea {
@@ -281,13 +333,50 @@ body {
   border-color: var(--rt-border) !important;
 }
 
+.gradio-container .accordion {
+  background: rgba(17, 24, 34, 0.88) !important;
+  border-radius: var(--rt-radius) !important;
+}
+
 .gradio-container .label-wrap > label {
   font-weight: 700 !important;
 }
 
 .gradio-container .generating,
 .gradio-container .pending {
-  background: rgba(177, 74, 31, 0.08) !important;
+  background: rgba(104, 165, 255, 0.08) !important;
+}
+
+.gradio-container .cm-editor,
+.gradio-container .cm-scroller,
+.gradio-container .cm-gutters,
+.gradio-container .cm-activeLine,
+.gradio-container pre,
+.gradio-container code,
+.gradio-container [data-testid="code"] {
+  background: #0d131d !important;
+  color: #deebff !important;
+}
+
+.gradio-container .cm-editor,
+.gradio-container [data-testid="code"] {
+  border: 1px solid rgba(127, 140, 156, 0.2) !important;
+  border-radius: var(--rt-radius) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02) !important;
+}
+
+.gradio-container .cm-gutters {
+  border-right: 1px solid rgba(127, 140, 156, 0.16) !important;
+}
+
+.gradio-container .cm-lineNumbers,
+.gradio-container .cm-foldGutter {
+  color: rgba(167, 179, 198, 0.7) !important;
+}
+
+.gradio-container .cm-content,
+.gradio-container .cm-line {
+  color: #deebff !important;
 }
 
 footer {
@@ -296,9 +385,9 @@ footer {
 
 @media (max-width: 900px) {
   .gradio-container {
-    width: min(100vw - 20px, 100%) !important;
-    max-width: min(100vw - 20px, 100%) !important;
-    padding: 16px 0 28px 0 !important;
+    width: calc(100vw - 16px) !important;
+    max-width: calc(100vw - 16px) !important;
+    padding: 12px 0 24px 0 !important;
   }
 
   .rt-hero {
